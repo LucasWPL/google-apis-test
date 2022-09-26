@@ -6,7 +6,7 @@ namespace LucasWpl\GoogleTest\Test\Unit;
 use LucasWpl\GoogleTest\Helper\GoogleDrive;
 use LucasWpl\GoogleTest\Test\TestCase;
 
-class NFeSignFTest extends TestCase
+class GoogleDriveUTest extends TestCase
 {
     public function testSaveFile()
     {
