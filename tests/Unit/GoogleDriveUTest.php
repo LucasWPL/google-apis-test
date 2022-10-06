@@ -8,6 +8,14 @@ use LucasWpl\GoogleTest\Test\TestCase;
 
 class GoogleDriveUTest extends TestCase
 {
+    public function testCreateFolder()
+    {
+        $googleDrive = $this->getInstance();
+        $folderId = $googleDrive->createFolder('folder-' . uniqid());
+
+        $this->assertNotNull($folderId);
+    }
+
     public function testSaveFile()
     {
         $googleDrive = $this->getInstance();

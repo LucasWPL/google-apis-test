@@ -37,6 +37,12 @@ vendor/bin/phpunit --filter testSaveFile
 vendor/bin/phpunit --filter testSaveAndDownloadAFile
 ```
 
+#### 4. Criar pasta
+
+```sh
+vendor/bin/phpunit --filter testCreateFolder
+```
+
 ## Referências
 
 - [Como instalar o PHP](https://www.php.com.br/instalacao-php-linux)

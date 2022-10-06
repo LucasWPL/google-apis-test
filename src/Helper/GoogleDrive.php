@@ -11,6 +11,23 @@ class GoogleDrive
 {
     private const CREDENTIALS_FILENAME = 'credentials.json';
 
+    public function createFolder(string $name): string
+    {
+        $client = $this->getClient();
+        $service = new Drive($client);
+
+        $fileMetadata = new Drive\DriveFile([
+            'name' => $name,
+            'mimeType' => 'application/vnd.google-apps.folder'
+        ]);
+
+        $file = $service->files->create($fileMetadata, [
+            'fields' => 'id'
+        ]);
+
+        return $file->id;
+    }
+
     public function saveFile(
         string $filename,
         string $description,
@@ -27,11 +44,11 @@ class GoogleDrive
 
         $data = file_get_contents($filename);
 
-        return $service->files->create($file, array(
+        return $service->files->create($file, [
             'data' => $data,
             'mimeType' => $mimeType,
             'uploadType' => 'multipart'
-        ));
+        ]);
     }
 
     public function getFiles(int $pageSize = 10)
@@ -39,10 +56,10 @@ class GoogleDrive
         $client = $this->getClient();
         $service = new Drive($client);
 
-        $optParams = array(
+        $optParams = [
             'pageSize' => $pageSize,
             'fields' => 'nextPageToken, files(id, name)'
-        );
+        ];
         return $service->files->listFiles($optParams);
     }
 
